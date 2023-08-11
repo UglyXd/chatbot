@@ -765,7 +765,7 @@ class BotCore:
                 # избегаем добавления дублирующей интерпретации.
                 if not any((interpretation == z[0]) for z in all_interpretations):
                     # Отсекаем дефектные тексты.
-                    p_valid = self.syntax_validator.is_valid(interpretation, text_utils=self.text_utils)
+                    p_valid = 1.0 #self.syntax_validator.is_valid(interpretation, text_utils=self.text_utils)
                     if p_valid > self.min_nonsense_threshold:
                         all_interpretations.append((interpretation, p_valid))
                     else:
@@ -775,9 +775,9 @@ class BotCore:
         # Но вообще мы должны попытаться использовать все сделанные варианты интерпретации и
         # потом уже выбрать лучший вариант реплики
         # print(all_interpretations)
-        all_interpretations = sorted(all_interpretations, key=lambda z: -z[1])
-        all_interpretations = all_interpretations[:1]
-        print('############################################################ new_debug ####### \n ', all_interpretations)
+        # all_interpretations = sorted(all_interpretations, key=lambda z: -z[1])
+        # all_interpretations = all_interpretations[:1]
+        # print('############################################################ new_debug ####### \n ', all_interpretations)
         # Кэш: найденные соответствия между конфабулированными предпосылками и реальными фактами в БД.
         mapped_premises = dict()
         for interpretation, p_interp in all_interpretations:
@@ -1223,7 +1223,7 @@ class BotCore:
             chitchat_outputs = chitchat_outputs_batch[ipromise*num_return_sequences: (ipromise+1)*num_return_sequences]
             for chitchat_output in chitchat_outputs:
                 # Оценка синтаксической валидности реплики
-                p_valid = self.syntax_validator.is_valid(chitchat_output, text_utils=self.text_utils)
+                p_valid = 1.0 #self.syntax_validator.is_valid(chitchat_output, text_utils=self.text_utils)
                 if p_valid < self.min_nonsense_threshold:
                     self.logger.debug('Nonsense detector@905: text=〚%s〛 p=%5.3f', chitchat_output, p_valid)
                     continue
