@@ -55,7 +55,7 @@ class TextUtils(object):
 
     def apply_word_function(self, func, constants, words):
         part_of_speech = None
-        tag = None
+        tag = tag = ('РОД', 'МУЖ')
         if func == '$chooseAdjByGender':
             part_of_speech = 'ПРИЛАГАТЕЛЬНОЕ'
             #tag = ('РОД', constants['gender'])

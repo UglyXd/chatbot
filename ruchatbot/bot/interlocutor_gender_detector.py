@@ -13,7 +13,7 @@ class InterlocutorGenderDetector:
         self.name2gender = None
 
     def load(self, models_dir):
-        with open(os.path.join(models_dir, 'names.pkl'), 'rb') as f:
+        with open(os.path.join(models_dir, 'names.pkl'), 'rb', encoding='utf-8') as f:
             self.name2gender = pickle.load(f)
 
     def detect_interlocutor_gender(self, text_str, text_utils):

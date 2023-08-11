@@ -33,7 +33,7 @@ class BotScripting(object):
 
     def load_resources(self, bot_profile, text_utils):
         if bot_profile.scenarios_enabled:
-            with open(bot_profile.scenarios_path, 'r') as f:
+            with open(bot_profile.scenarios_path, 'r', encoding='utf-8') as f:
                 data = yaml.safe_load(f)
 
                 for module_node in data.get('modules', []):
@@ -59,7 +59,7 @@ class BotScripting(object):
             self.load_rules(bot_profile.rules_path, bot_profile, text_utils, self.named_patterns, self.entities, self.generative_named_patterns)
 
     def load_rules(self, rules_path, bot_profile, text_utils, named_patterns, entities, generative_named_patterns):
-        with open(rules_path, 'r') as f:
+        with open(rules_path, 'r', encoding='utf-8') as f:
             data = yaml.safe_load(f)
             if 'import' in data:
                 for path2 in data['import']:

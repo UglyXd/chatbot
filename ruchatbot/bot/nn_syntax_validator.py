@@ -55,6 +55,8 @@ class NN_SyntaxValidator(ModelApplicator):
         #self.model.summary()
         # конец отладки
 
+
+
         self.X_probe = np.zeros((1, self.max_inputseq_len,), dtype=np.int32)
         self.inputs = [self.X_probe]
 

@@ -18,7 +18,7 @@ greedy_rules:
                 phrases:
                     - "ку-ку!"
                 on_repeat:
-                    - "это я уже $chooseVByGender(слышал, слышала)"
+                    - "это я уже слышал"
                     - "что, опять ку-ку?"
                 on_repeat_again:
                     - "все, хватит с меня этих ку-ку!"

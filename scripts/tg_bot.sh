@@ -1,6 +1,6 @@
 PYTHONPATH=.. \
 python3 ../ruchatbot/bot/conversation_engine.py \
---mode telegram \
+--mode console \
 --chatbot_dir .. \
 --log ../tmp/axioma.log \
 --profile ../data/profile_1.json \

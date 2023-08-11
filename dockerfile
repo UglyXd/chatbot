@@ -58,7 +58,7 @@ WORKDIR /chatbot/ruchatbot/utils
 COPY ./ruchatbot/utils/*.py ./
 
 WORKDIR /chatbot/data
-COPY ./data/*.* ./
+COPY /home/agrohim/data ./
 
 WORKDIR /chatbot/tmp/sbert_pq
 COPY ./tmp/sbert_pq .

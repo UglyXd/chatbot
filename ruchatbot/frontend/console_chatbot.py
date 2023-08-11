@@ -24,10 +24,10 @@ from ruchatbot.scripting.bot_scripting import BotScripting
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Console UI for Сhatbot v7')
-    parser.add_argument('--chatbot_dir', type=str, default=os.path.expanduser('~/polygon/chatbot'))
-    parser.add_argument('--log', type=str, default=os.path.expanduser('~/polygon/chatbot/tmp/conversation_engine.log'))
-    parser.add_argument('--profile', type=str, default=os.path.expanduser('~/polygon/chatbot/data/profile_1.json'), help='Path to yaml file with bot persona records')
-    parser.add_argument('--bert', type=str)
+    parser.add_argument('--chatbot_dir', type=str, default=os.path.expanduser('C:\\Users\\User\\Documents\\GitHub\\chatbot'))
+    parser.add_argument('--log', type=str, default=os.path.expanduser('C:\\Users\\User\\Documents\\GitHub\\chatbot\\conversation_engine.log'))
+    parser.add_argument('--profile', type=str, default=os.path.expanduser('C:\\Users\\User\\Documents\\GitHub\\chatbot\\data\\profile_1.json'), help='Path to yaml file with bot persona records')
+    parser.add_argument('--bert', type=str, default=os.path.expanduser('C:\\Users\\User\\Documents\\GitHub\\chatbot\\tmp\\rubert-tiny'))
     parser.add_argument('--db', type=str, default=':memory:', help='Connection string for SQLite storage file; use :memory: for no persistence')
 
     args = parser.parse_args()
@@ -61,7 +61,7 @@ if __name__ == '__main__':
         bot.load_bert(args.bert)
     else:
         # Определяем модель берта по конфигу детектора полных предпосылок.
-        with open(os.path.join(models_dir, 'closure_detector_2.cfg'), 'r') as f:
+        with open(os.path.join(models_dir, 'closure_detector_2.cfg'), 'r', encoding='utf-8') as f:
             cfg = json.load(f)
             bert_name = cfg['bert_model']
             bot.load_bert(bert_name)
