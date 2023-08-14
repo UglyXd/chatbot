@@ -1,0 +1,8 @@
+2023-08-14 09:45:34,489 BotCore: device=cpu
+2023-08-14 09:45:34,493 Starting new HTTPS connection (1): huggingface.co:443
+2023-08-14 09:45:34,754 https://huggingface.co:443 "HEAD /DeepPavlov/rubert-base-cased-conversational/resolve/main/config.json HTTP/1.1" 200 0
+2023-08-14 09:45:36,427 https://huggingface.co:443 "HEAD /DeepPavlov/rubert-base-cased-conversational/resolve/main/vocab.txt HTTP/1.1" 200 0
+2023-08-14 09:45:36,682 Load pretrained SentenceTransformer: C:\Users\User\Documents\GitHub\chatbot\tmp\sbert_pq
+2023-08-14 09:45:37,109 Load pretrained SentenceTransformer: C:\Users\User\Documents\GitHub\chatbot\tmp\sbert_synonymy
+2023-08-14 09:45:41,211 https://huggingface.co:443 "HEAD /DeepPavlov/rubert-base-cased-conversational/resolve/main/config.json HTTP/1.1" 200 0
+2023-08-14 09:45:42,881 https://huggingface.co:443 "HEAD /DeepPavlov/rubert-base-cased-conversational/resolve/main/vocab.txt HTTP/1.1" 200 0

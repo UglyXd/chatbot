@@ -51,6 +51,7 @@ from ruchatbot.scripting.running_scenario import RunningDialogStatus
 from ruchatbot.scripting.running_scenario import RunningScenario
 from ruchatbot.scripting.matcher.matching_cache import MatchingCache
 from ruchatbot.bot.search_utils import search_among
+from transformers import BertForQuestionAnswering, BertTokenizer
 # from ruchatbot.bot.nn_syntax_validator import NN_SyntaxValidator
 
 
@@ -432,6 +433,11 @@ class BotCore:
         self.logger.debug('BotCore: device=%s', str(self.device))
         self.min_nonsense_threshold = 0.50  # мин. значение синтаксической валидности сгенерированной моделями фразы, чтобы использовать ее дальше
         self.pqa_rel_threshold = 0.80  # порог отсечения нерелевантных предпосылок
+        # Инициализация модели BERT
+        self.interpreter = BertForQuestionAnswering.from_pretrained("DeepPavlov/rubert-base-cased-conversational")
+
+        # Инициализация токенизатора BERT
+        self.bert_tokenizer = BertTokenizer.from_pretrained("DeepPavlov/rubert-base-cased-conversational")
 
     def load_bert(self, bert_path):
         self.bert_tokenizer = transformers.BertTokenizer.from_pretrained(bert_path, do_lower_case=False)
@@ -468,16 +474,22 @@ class BotCore:
         # self.syntax_validator = NN_SyntaxValidator()
         # self.syntax_validator.load(models_dir)
 
-        #self.entailment = EntailmentModel(self.device)
-        #self.entailment.load(models_dir, self.bert_model, self.bert_tokenizer)
+        # self.entailment = EntailmentModel(self.device)
+        # self.entailment.load(models_dir, self.bert_model, self.bert_tokenizer)
 
-        #self.interpreter = RugptInterpreter()
-        self.interpreter = RuT5Interpreter()
-        self.interpreter.load(models_dir)
+        # Пример инициализации модели BERT
+        self.interpreter = BertForQuestionAnswering.from_pretrained("DeepPavlov/rubert-base-cased-conversational")
+        # Пример инициализации токенизатора BERT
+        self.bert_tokenizer = BertTokenizer.from_pretrained("DeepPavlov/rubert-base-cased-conversational")
 
-        #self.confabulator = RugptConfabulator()
-        #self.confabulator.load(models_dir)
 
+        self.interpreter.to(self.device)  # Перенос модели на нужное устройство
+        self.bert_tokenizer.to(self.device)  # Перенос токенизатора на нужное устройство
+
+        # Загрузка состояния модели BERT (если это необходимо)
+        self.interpreter.load_state_dict(torch.load(os.path.join(models_dir, 'bert_model_state_dict.pth')))
+
+        # Пример загрузки chitchat и base_interpreter (если это необходимо)
         self.chitchat = RugptChitChat()
         self.chitchat.load(os.path.join(models_dir, 'rugpt_npqa'))
 
